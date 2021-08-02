@@ -1,0 +1,14 @@
+.bg-custom-gradient {
+  background: var(--bg-custom-gradient);
+  color: white;
+}
+
+#header-nav {
+  transition: all 3s;
+}
+
+#header-nav a:hover {
+  background: var(--bg-custom-gradient);
+  color: white;
+  transition: all 300ms;
+}
