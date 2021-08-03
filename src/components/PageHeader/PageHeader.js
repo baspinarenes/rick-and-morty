@@ -12,7 +12,7 @@ function Header() {
       id="header"
       className="h-20 tablet:px-12 border-b-2 flex justify-center tablet:justify-between align-middle"
     >
-      <Link to="/">
+      <Link to="/" data-testid="navigate-to-home">
         <img className="h-full object-fill" src={Logo} alt="" height="78" />
       </Link>
       <nav
@@ -23,6 +23,7 @@ function Header() {
           <li>
             <NavLink
               to="/character"
+              data-testid="navigate-to-characters"
               activeClassName="bg-custom-gradient"
               className="text-gray-500 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
@@ -36,6 +37,7 @@ function Header() {
           <li>
             <NavLink
               to="/location"
+              data-testid="navigate-to-locations"
               activeClassName="bg-custom-gradient"
               className="text-gray-500 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
@@ -49,6 +51,7 @@ function Header() {
           <li>
             <NavLink
               to="/episode"
+              data-testid="navigate-to-episodes"
               activeClassName="bg-custom-gradient"
               className="text-gray-500 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >

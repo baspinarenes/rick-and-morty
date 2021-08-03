@@ -1,18 +1,132 @@
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
-import { render, screen } from "@testing-library/react";
-import App from "./App";
 import "@testing-library/jest-dom";
+import { MemoryRouter } from "react-router-dom";
+import { render, screen, fireEvent } from "@testing-library/react";
+import PageHeader from "./components/PageHeader/PageHeader";
+import Routes from "./components/Routes/Routes";
 
-describe("Test for App Router", () => {
-  test("Should render page header and HomePage on default route", () => {
-    const result = render(
+describe("Tests for Router NavLink", () => {
+  test("should navigate to the correct pages with NavLinks when route is '/'", () => {
+    render(
       <MemoryRouter>
-        <App />
+        <PageHeader />
+        <Routes />
       </MemoryRouter>
     );
 
-    expect(result.container.querySelector("#header")).not.toBeNull();
-    expect(screen.getByText("Characters Content")).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("navigate-to-home"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-characters"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-locations"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Locations Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-episodes"));
+
+    expect(document.querySelector("main").textContent).toBe("Episodes Content");
+  });
+
+  test("should navigate to the correct pages with NavLinks when route is '/characters'", () => {
+    render(
+      <MemoryRouter initialEntries={["/character"]}>
+        <PageHeader />
+        <Routes />
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-home"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-characters"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-locations"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Locations Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-episodes"));
+
+    expect(document.querySelector("main").textContent).toBe("Episodes Content");
+  });
+
+  test("should navigate to the correct pages with NavLinks when route is '/location'", () => {
+    render(
+      <MemoryRouter initialEntries={["/location"]}>
+        <PageHeader />
+        <Routes />
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-home"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-characters"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-locations"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Locations Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-episodes"));
+
+    expect(document.querySelector("main").textContent).toBe("Episodes Content");
+  });
+
+  test("should navigate to the correct pages with NavLinks when route is '/episode'", () => {
+    render(
+      <MemoryRouter initialEntries={["/episode"]}>
+        <PageHeader />
+        <Routes />
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-home"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-characters"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Characters Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-locations"));
+
+    expect(document.querySelector("main").textContent).toBe(
+      "Locations Content"
+    );
+
+    fireEvent.click(screen.getByTestId("navigate-to-episodes"));
+
+    expect(document.querySelector("main").textContent).toBe("Episodes Content");
   });
 });

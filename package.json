@@ -15,9 +15,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "jest --runInBand",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/index.js",
     "format": "prettier -w ."
