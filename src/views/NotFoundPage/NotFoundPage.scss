@@ -1,0 +1,29 @@
+#not-found-main {
+  h2 {
+    background: var(--gradient-blue);
+    background-clip: text;
+    text-shadow: 12px 12px 35px var(--gradient-green);
+    font-size: 20rem;
+    line-height: 20rem;
+  }
+
+  button {
+    background: linear-gradient(to left, var(--gradient-blue) 5%, var(--gradient-green));
+    border-bottom: 3px solid;
+    border-image-source: linear-gradient(to left, var(--gradient-blue), var(--gradient-green) 90%);
+    border-image-slice: 1;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &:hover {
+      background: linear-gradient(to right, var(--gradient-blue) 5%, var(--gradient-green));
+      border-image-source: linear-gradient(to right, var(--gradient-blue), var(--gradient-green) 90%);
+      background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+  }
+
+  p {
+    line-height: 2.4rem;
+  }
+}

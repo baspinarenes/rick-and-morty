@@ -14,7 +14,8 @@ function Routes() {
       <Route exact path="/character" component={CharactersPage} />
       <Route exact path="/location" component={LocationsPage} />
       <Route exact path="/episode" component={EpisodesPage} />
-      <Route component={NotFoundPage} />
+      <Route exact path="/404" component={NotFoundPage} />
+      <Redirect from="*" to="/404" />
     </Switch>
   );
 }

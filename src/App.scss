@@ -1,3 +1,17 @@
+/*
+  ========================================
+  Fonts
+  ========================================
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/*
+  ========================================
+  Variables
+  ========================================
+*/
+
 :root {
   --gradient-blue: #22a2bd;
   --gradient-green: #80fd4c;
@@ -6,7 +20,20 @@
   --bg-custom-gradient: linear-gradient(109deg, rgb(182, 244, 146) 11.2%, rgb(51, 139, 147) 92.5%);
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
 main {
   height: calc(100vh - 80px);
   overflow: hidden;
+}
+
+h2 {
+  color: var(--gradient-blue);
+  font-size: 3rem;
+  line-height: 4rem;
+  font-weight: bold;
+  text-shadow: 1px 0px 11px var(--gradient-green);
+  -webkit-text-stroke: 1px black;
 }
