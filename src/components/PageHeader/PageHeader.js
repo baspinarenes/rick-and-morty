@@ -2,7 +2,6 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { BsPeopleFill, BsCameraVideoFill } from "react-icons/bs";
 import { MdMyLocation } from "react-icons/md";
-import { Logo } from "../../assets/rick-and-morty-logo.png";
 
 import "./PageHeader.scss";
 
@@ -13,7 +12,12 @@ function Header() {
       className="h-20 tablet:px-12 border-b-2 flex justify-center tablet:justify-between align-middle"
     >
       <Link to="/" data-testid="navigate-to-home">
-        <img className="h-full object-fill" src={Logo} alt="" height="78" />
+        <img
+          className="h-full object-fill"
+          src="/assets/rick-and-morty-logo.png"
+          alt=""
+          height="78"
+        />
       </Link>
       <nav
         id="header-nav"
