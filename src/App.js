@@ -5,24 +5,25 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Header from "./components/Header/Header";
+import PageHeader from "./components/PageHeader/PageHeader";
 import CharactersPage from "./views/CharactersPage/CharactersPage";
 import LocationsPage from "./views/LocationsPage/LocationsPage";
 import EpisodesPage from "./views/EpisodesPage/EpisodesPage";
+
 import "./App.scss";
 
 function App() {
   return (
     <Router>
-      <Header />
+      <PageHeader />
       <Switch>
-        <Route exact path="/episode">
+        <Route path="/episode">
           <EpisodesPage />
         </Route>
-        <Route exact path="/location">
+        <Route path="/location">
           <LocationsPage />
         </Route>
-        <Route exact path="/character">
+        <Route path="/character">
           <CharactersPage />
         </Route>
         <Route path="/">

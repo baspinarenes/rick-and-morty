@@ -1,6 +1,11 @@
 :root {
   --gradient-blue: #22a2bd;
   --gradient-green: #80fd4c;
+  --main-bacgkround-color: #f8f8f8;
 
   --bg-custom-gradient: linear-gradient(109deg, rgb(182, 244, 146) 11.2%, rgb(51, 139, 147) 92.5%);
+}
+
+main {
+  height: calc(100vh - 80px);
 }

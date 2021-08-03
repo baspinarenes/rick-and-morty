@@ -2,7 +2,7 @@ import React from "react";
 import "./EpisodesPage.scss";
 
 function EpisodesPage() {
-  return <div>Episodes</div>;
+  return <main className="bg-gray-100">Episodes Content</main>;
 }
 
 export default EpisodesPage;

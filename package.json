@@ -28,6 +28,12 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "rootDir": "./",
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -46,10 +52,12 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "postcss": "^7.0.36",
     "prettier": "^2.3.2",
     "sass": "^1.37.0",
