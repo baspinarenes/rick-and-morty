@@ -9,21 +9,22 @@ function Header() {
   return (
     <header
       id="header"
-      className="h-20 tablet:px-12 border-b-2 flex justify-center tablet:justify-between align-middle"
+      className="tablet:h-20 tablet:px-12 border-b-2 flex flex-col justify-center tablet:flex-row tablet:justify-between align-middle"
     >
-      <Link to="/" data-testid="navigate-to-home">
+      <Link
+        to="/"
+        data-testid="navigate-to-home"
+        className="block w-full border-b-2 tablet:border-b-0 tablet:mx-0"
+      >
         <img
-          className="h-full object-fill"
+          className="max-h-20 mx-auto tablet:mx-0"
           src="/assets/rick-and-morty-logo.png"
           alt=""
           height="78"
         />
       </Link>
-      <nav
-        id="header-nav"
-        className="justify-center items-center hidden tablet:flex"
-      >
-        <ul className="flex items-center h-5 gap-x-2">
+      <nav id="header-nav" className="justify-center items-center flex p-2">
+        <ul className="flex items-center tablet:h-5 gap-x-2">
           <li>
             <NavLink
               to="/character"
@@ -31,9 +32,9 @@ function Header() {
               activeClassName="bg-custom-gradient"
               className="text-gray-500 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
-              <span className="hidden laptop:block">Characters</span>
+              <span className="tablet:hidden laptop:block">Characters</span>
               <BsPeopleFill
-                className="laptop:hidden"
+                className="hidden tablet:block laptop:hidden"
                 style={{ fontSize: "1.4rem" }}
               />
             </NavLink>
@@ -45,9 +46,9 @@ function Header() {
               activeClassName="bg-custom-gradient"
               className="text-gray-500 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
-              <span className="hidden laptop:block">Locations</span>
+              <span className="tablet:hidden laptop:block">Locations</span>
               <MdMyLocation
-                className="laptop:hidden"
+                className="hidden tablet:block laptop:hidden"
                 style={{ fontSize: "1.3rem" }}
               />
             </NavLink>
@@ -59,9 +60,9 @@ function Header() {
               activeClassName="bg-custom-gradient"
               className="text-gray-500 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
-              <span className="hidden laptop:block">Episodes</span>
+              <span className="tablet:hidden laptop:block">Episodes</span>
               <BsCameraVideoFill
-                className="laptop:hidden"
+                className="hidden tablet:block laptop:hidden"
                 style={{ fontSize: "1.3rem" }}
               />
             </NavLink>
