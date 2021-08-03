@@ -9,6 +9,7 @@ import PageHeader from "./components/PageHeader/PageHeader";
 import CharactersPage from "./views/CharactersPage/CharactersPage";
 import LocationsPage from "./views/LocationsPage/LocationsPage";
 import EpisodesPage from "./views/EpisodesPage/EpisodesPage";
+import NotFoundPage from "./views/NotFoundPage/NotFoundPage";
 
 import "./App.scss";
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/">
           <Redirect from="/" to="/character" />
         </Route>
+        <Route component={NotFoundPage} />
       </Switch>
     </Router>
   );
