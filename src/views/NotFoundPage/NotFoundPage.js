@@ -1,10 +1,7 @@
 import React from "react";
 import "./NotFoundPage.scss";
-import { useHistory } from "react-router-dom";
 
 function NotFoundPage() {
-  const history = useHistory();
-
   return (
     <main id="not-found-main" className="flex justify-center items-center">
       <div className="flex flex-col items-center">
@@ -12,7 +9,11 @@ function NotFoundPage() {
         <p className="text-center text-2xl">
           You are lost in the world of Rick and Morty!
           <br />
-          <button type="button" onClick={() => history.goBack()}>
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            data-testid="return-previos-page"
+          >
             Return to the familiar place.
           </button>
         </p>

@@ -3,6 +3,10 @@ import axios from "axios";
 const baseUrl = "https://rickandmortyapi.com/api/";
 
 const getFiltersQuery = (filters) => {
+  if (Object.keys(filters) <= 0) {
+    return "";
+  }
+
   if ("id" in filters) {
     return `/${filters.id}`;
   }
@@ -16,19 +20,31 @@ const getFiltersQuery = (filters) => {
 
 const getData = async (endpointUrl) => {
   const url = `${baseUrl}${endpointUrl}`;
-  console.log("URL: ", url);
   const response = await axios.get(url);
   const { data } = response;
-  const { info, results } = data;
 
+  /* 
+    Raw data;
+    - /character -> data.results (array)
+    - /character/1 -> data (object)
+    - /character/1,2,3 -> data (array)
+    - /character/?name="Rick" -> data.results (array)
+  */
+
+  if (Array.isArray(data) || data?.id) {
+    return data;
+  }
+
+  const { results } = data;
   // const { count, pages, next, prev } = info;
   return results;
 };
 
-const getEndpoint = async (endpoint = "", filters = {}) => {
+export const getEndpoint = async (endpoint = "", filters = {}) => {
   try {
     const filtersQuery = getFiltersQuery(filters);
     const rawData = await getData(endpoint + filtersQuery);
+
     return rawData;
   } catch (e) {
     return {
@@ -46,6 +62,6 @@ All filters: {
 }
 */
 
-const getCharacter = (filters) => getEndpoint("character", filters);
-const getLocation = (filters) => getEndpoint("location", filters);
-const getEpisode = (filters) => getEndpoint("episode", filters);
+export const getCharacter = (filters) => getEndpoint("character", filters);
+export const getLocation = (filters) => getEndpoint("location", filters);
+export const getEpisode = (filters) => getEndpoint("episode", filters);
