@@ -2,28 +2,8 @@ import React from "react";
 import "./ItemList.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-function ItemList({ items, totalDataCount, fetchMoreData, hasMore }) {
+function ItemList({ items, totalDataCount, fetchMoreData }) {
   const pathName = window.location.pathname;
-
-  /* const handleScroll = () => {
-    const bottom =
-      Math.ceil(window.innerHeight + window.scrollY) >=
-      document.documentElement.scrollHeight;
-
-    if (bottom) {
-      fetchMoreData();
-    }
-  }; 
-  React.useEffect(() => {
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-*/
 
   function getSummaryInfos(item) {
     const filteredInfos = Object.entries(item)
@@ -47,7 +27,7 @@ function ItemList({ items, totalDataCount, fetchMoreData, hasMore }) {
       <div className="laptop:flex laptop:justify-between laptop:items-end">
         <h2 className="text-">List of {pathName.slice(1)}s</h2>
         <p className="mb-5 text-gray-500">
-          {totalDataCount || 0} items listed.
+          {items?.length || 0} of {totalDataCount || 0} items listed.
         </p>
       </div>
 
@@ -60,7 +40,7 @@ function ItemList({ items, totalDataCount, fetchMoreData, hasMore }) {
             dataLength={items.length}
             className="grid grid-cols-1 laptop:grid-cols-2 largeDesktop:grid-cols-3 gap-2"
             next={fetchMoreData}
-            hasMore={hasMore}
+            hasMore
             scrollableTarget="scrollableDiv"
           >
             {items.map((item) => (

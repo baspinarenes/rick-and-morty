@@ -62,5 +62,3 @@ All filters: {
 export const getCharacter = (filters) => getEndpoint("character", filters);
 export const getLocation = (filters) => getEndpoint("location", filters);
 export const getEpisode = (filters) => getEndpoint("episode", filters);
-
-getCharacter({ page: 35 });

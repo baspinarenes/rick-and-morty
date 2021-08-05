@@ -1,11 +1,12 @@
 import React from "react";
+import "./Filters.scss";
 
 const getFilterOfType = (type, handleChange) => {
   if (type === "gender") {
     return (
       <select
         name="gender"
-        className="w-full mb-2 py-1 px-2"
+        className="w-full mb-2 py-2 px-5"
         onChange={handleChange}
       >
         <option value="" defaultValue disabled>
@@ -23,15 +24,15 @@ const getFilterOfType = (type, handleChange) => {
     return (
       <select
         name="status"
-        className="w-full mb-2 py-1 px-2"
+        className="w-full mb-2 py-2 px-5"
         onChange={handleChange}
       >
         <option value="" defaultValue disabled>
           Status
         </option>
         <option value="">All</option>
-        <option value="">Alive</option>
-        <option value="female">Dead</option>
+        <option value="alive">Alive</option>
+        <option value="dead">Dead</option>
         <option value="unknown">Unknown</option>
       </select>
     );
@@ -41,8 +42,9 @@ const getFilterOfType = (type, handleChange) => {
     <input
       name={type}
       type="text"
-      className="w-full mb-2 py-1 px-3"
+      className="w-full mb-2 py-2 px-5"
       placeholder={type[0].toUpperCase() + type.slice(1)}
+      autoComplete="off"
       onChange={handleChange}
     />
   );
@@ -56,12 +58,7 @@ function Filters({ filterTypes, filters, setFilters }) {
     });
   };
 
-  return (
-    <aside className="w-11/12 tablet:flex-none tablet:w-3/12">
-      <h2 className="mb-3">Filter</h2>
-      {filterTypes.map((type) => getFilterOfType(type, handleChange))}
-    </aside>
-  );
+  return <>{filterTypes.map((type) => getFilterOfType(type, handleChange))}</>;
 }
 
 export default Filters;

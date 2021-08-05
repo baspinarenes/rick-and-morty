@@ -7,7 +7,6 @@ import { getCharacter } from "../../utils/API";
 function CharactersPage() {
   const [characters, setCharacters] = useState([]);
   const [totalDataCount, setTotalDataCount] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
   const [filters, setFilters] = useState({
     name: "",
     type: "",
@@ -18,9 +17,10 @@ function CharactersPage() {
 
   const getFilteredCharacters = async () => {
     const filteredChars = await getCharacter(filters);
-    console.log("DATA: ", filteredChars);
+
     setCharacters(filteredChars.data);
     setTotalDataCount(filteredChars.totalDataCount);
+
     return filteredChars;
   };
 
@@ -31,41 +31,55 @@ function CharactersPage() {
   }, []);
 
   useEffect(() => {
+    setCharacters([]); // eğer filtre varsa array'i sıfırla ki var olanın sonuna eklemesin
     getFilteredCharacters();
   }, [filters]);
 
   const fetchMoreData = async () => {
-    if (characters.length >= totalDataCount) {
-      setHasMore(false);
-      return;
-    }
-    const oldCharacters = [...characters];
-    const newCharacters = await getCharacter({
-      ...filters,
-      page: Math.floor(oldCharacters.length / 20) + 1,
-    });
-    if ("data" in newCharacters) {
-      setCharacters([...oldCharacters, ...newCharacters.data]);
+    if (characters.length < totalDataCount) {
+      const oldCharacters = [...characters];
+      const newCharacters = await getCharacter({
+        ...filters,
+        page: Math.floor(oldCharacters.length / 20) + 1,
+      });
+
+      if ("data" in newCharacters) {
+        setCharacters([...oldCharacters, ...newCharacters.data]);
+      }
     }
   };
 
-  console.log(filters);
+  let pageCaps = null;
+
+  if (totalDataCount < 671) {
+    pageCaps = "/assets/filtered-list-caps.png";
+  } else if (characters?.length > 0) {
+    pageCaps = "/assets/full-list-caps.png";
+  } else {
+    pageCaps = "/assets/empty-list-caps.png";
+  }
 
   return (
     <main
       data-testid="characters-main"
       className="bg-gray-100 flex flex-col items-center tablet:items-start tablet:flex-row p-6 tablet:px-20 gap-16"
     >
-      <Filters
-        filterTypes={["name", "type", "species", "gender", "status"]}
-        filters={filters}
-        setFilters={setFilters}
-      />
+      <aside
+        id="filtersSection"
+        className="w-11/12 tablet:flex-none tablet:w-3/12 h-full"
+      >
+        <h2 className="mb-3">Filter</h2>
+        <Filters
+          filterTypes={["name", "type", "species", "gender", "status"]}
+          filters={filters}
+          setFilters={setFilters}
+        />
+        <img src={pageCaps} alt="" />
+      </aside>
       <ItemList
         items={characters}
         totalDataCount={totalDataCount}
         fetchMoreData={fetchMoreData}
-        hasMore={hasMore}
       />
     </main>
   );

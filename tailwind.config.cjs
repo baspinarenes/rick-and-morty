@@ -5,7 +5,7 @@ module.exports = {
     extend: {},
     screens: {
       tablet: "720px",
-      // => @media (min-width: 680px) { ... }
+      // => @media (min-width: 720px) { ... }
 
       laptop: "900px",
       // => @media (min-width: 900px) { ... }
