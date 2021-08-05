@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "../../components/Filters/Filters";
 import ItemList from "../../components/ItemList/ItemList";
 import "./CharactersPage.scss";
-import { getCharacter } from "../../utils/API";
+import { getAPI } from "../../utils/API";
 
 function CharactersPage() {
   const [characters, setCharacters] = useState([]);
@@ -16,7 +16,7 @@ function CharactersPage() {
   });
 
   const getFilteredCharacters = async () => {
-    const filteredChars = await getCharacter(filters);
+    const filteredChars = await getAPI.character(filters);
 
     setCharacters(filteredChars.data);
     setTotalDataCount(filteredChars.totalDataCount);
@@ -25,7 +25,7 @@ function CharactersPage() {
   };
 
   useEffect(async () => {
-    const chars = await getCharacter();
+    const chars = await getAPI.character();
     setCharacters(chars.data);
     setTotalDataCount(chars.totalDataCount);
   }, []);
@@ -38,7 +38,7 @@ function CharactersPage() {
   const fetchMoreData = async () => {
     if (characters.length < totalDataCount) {
       const oldCharacters = [...characters];
-      const newCharacters = await getCharacter({
+      const newCharacters = await getAPI.character({
         ...filters,
         page: Math.floor(oldCharacters.length / 20) + 1,
       });

@@ -1,6 +1,7 @@
 import React from "react";
 import "./ItemList.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Link } from "react-router-dom";
 
 function ItemList({ items, totalDataCount, fetchMoreData }) {
   const pathName = window.location.pathname;
@@ -44,31 +45,33 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
             scrollableTarget="scrollableDiv"
           >
             {items.map((item) => (
-              <div
-                key={item.id}
-                className="card-container flex items-end border border-gray-300"
-              >
-                <img
-                  className="card-bg"
-                  src={item.image || "/assets/placeholder-img.jpg"}
-                  alt=""
-                />
-                <div className="card-content w-full">
-                  <h3 className="text-black font-black border-b-4 border-black p-2 text-center tablet:text-left">
-                    {item.name}
-                  </h3>
-                  <ul className="flex flex-wrap p-2 justify-center tablet:justify-start">
-                    {getSummaryInfos(item).map((info) => (
-                      <li
-                        key={info[0]}
-                        className="uppercase text-green-600 font-bold text-xl text-center"
-                      >
-                        {info[1]}
-                      </li>
-                    ))}
-                  </ul>
+              <Link to={`${pathName}/${item.id}`} className="card-link">
+                <div
+                  key={item.id}
+                  className="card-container flex items-end border border-gray-300"
+                >
+                  <img
+                    className="card-bg"
+                    src={item.image || "/assets/placeholder-img.jpg"}
+                    alt=""
+                  />
+                  <div className="card-content w-full">
+                    <h3 className="text-black font-black border-b-4 border-black p-2 text-center tablet:text-left">
+                      {item.name}
+                    </h3>
+                    <ul className="flex flex-wrap p-2 justify-center tablet:justify-start">
+                      {getSummaryInfos(item).map((info) => (
+                        <li
+                          key={info[0]}
+                          className="uppercase text-green-600 font-bold text-xl text-center"
+                        >
+                          {info[1]}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </InfiniteScroll>
         </div>

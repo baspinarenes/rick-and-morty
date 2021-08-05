@@ -1,0 +1,22 @@
+#detail-content {
+  #info-list {
+    span {
+      line-height: 2.3rem;
+    }
+  
+    @media (min-width: 1150px) {
+      border: 0;
+      
+      li {
+        flex-direction: column;
+        min-width: 45%;
+      }
+    }
+  }
+
+  @media (min-width: 1150px) {
+    flex-direction: row;
+    padding-left: 620px;
+    padding-right: 20px;
+  }
+}

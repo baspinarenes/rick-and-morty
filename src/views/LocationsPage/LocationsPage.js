@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "../../components/Filters/Filters";
 import ItemList from "../../components/ItemList/ItemList";
 import "./LocationsPage.scss";
-import { getLocation } from "../../utils/API";
+import { getAPI } from "../../utils/API";
 
 function LocationsPage() {
   const [locations, setLocations] = useState([]);
@@ -14,7 +14,7 @@ function LocationsPage() {
   });
 
   const getFilteredLocations = async () => {
-    const filteredLocs = await getLocation(filters);
+    const filteredLocs = await getAPI.location(filters);
 
     setLocations(filteredLocs.data);
     setTotalDataCount(filteredLocs.totalDataCount);
@@ -23,7 +23,7 @@ function LocationsPage() {
   };
 
   useEffect(async () => {
-    const eps = await getLocation();
+    const eps = await getAPI.location();
     setLocations(eps.data);
     setTotalDataCount(eps.totalDataCount);
   }, []);
@@ -36,7 +36,7 @@ function LocationsPage() {
   const fetchMoreData = async () => {
     if (locations.length < totalDataCount) {
       const oldLocations = [...locations];
-      const newLocations = await getLocation({
+      const newLocations = await getAPI.location({
         ...filters,
         page: Math.floor(oldLocations.length / 20) + 1,
       });

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "../../components/Filters/Filters";
 import ItemList from "../../components/ItemList/ItemList";
 import "./EpisodesPage.scss";
-import { getEpisode } from "../../utils/API";
+import { getAPI } from "../../utils/API";
 
 function EpisodesPage() {
   const [episodes, setEpisodes] = useState([]);
@@ -13,7 +13,7 @@ function EpisodesPage() {
   });
 
   const getFilteredEpisodes = async () => {
-    const filteredEps = await getEpisode(filters);
+    const filteredEps = await getAPI.episode(filters);
 
     setEpisodes(filteredEps.data);
     setTotalDataCount(filteredEps.totalDataCount);
@@ -22,13 +22,12 @@ function EpisodesPage() {
   };
 
   useEffect(async () => {
-    const eps = await getEpisode();
+    const eps = await getAPI.episode();
     setEpisodes(eps.data);
     setTotalDataCount(eps.totalDataCount);
   }, []);
 
   useEffect(() => {
-    console.log("FILTERS: ", filters);
     setEpisodes([]); // eğer filtre varsa array'i sıfırla ki var olanın sonuna eklemesin
     getFilteredEpisodes();
   }, [filters]);
@@ -36,7 +35,7 @@ function EpisodesPage() {
   const fetchMoreData = async () => {
     if (episodes.length < totalDataCount) {
       const oldEpisodes = [...episodes];
-      const newEpisodes = await getEpisode({
+      const newEpisodes = await getAPI.episode({
         ...filters,
         page: Math.floor(oldEpisodes.length / 20) + 1,
       });
