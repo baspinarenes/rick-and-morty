@@ -44,8 +44,23 @@ h2 {
   color: var(--gradient-blue);
   font-size: 3rem;
   margin-bottom: 0.75rem;
-  line-height: 4rem;
+  line-height: 3rem;
   font-weight: bold;
   text-shadow: 1px 0px 11px var(--gradient-green);
   -webkit-text-stroke: 1px black;
+}
+
+h3 {
+  font-size: 11vw;
+  line-height: 11vw;
+
+  @media (min-width: 720px) {
+    font-size: 3.3rem;
+    line-height: 3.6rem;
+  }
+
+  @media (min-width: 1500px) {
+    font-size: 3.2vw;
+    line-height: 3vw;
+  }
 }

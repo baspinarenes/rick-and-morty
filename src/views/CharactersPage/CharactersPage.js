@@ -20,12 +20,10 @@ function CharactersPage() {
       setHasMore(false);
       return;
     }
-
     const oldCharacters = [...characters];
     const newCharacters = await getCharacter({
       page: Math.floor(oldCharacters.length / 20) + 1,
     });
-
     if ("data" in newCharacters) {
       setCharacters([...oldCharacters, ...newCharacters.data]);
     }
@@ -37,7 +35,7 @@ function CharactersPage() {
     >
       <Filters />
       <ItemList
-        characters={characters}
+        items={characters}
         totalDataCount={totalDataCount}
         fetchMoreData={fetchMoreData}
         hasMore={hasMore}
