@@ -8,6 +8,11 @@ function LocationsPage() {
   const [locations, setLocations] = useState([]);
   const [totalDataCount, setTotalDataCount] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [filters, setFilters] = useState({
+    name: "",
+    type: "",
+    dimension: "",
+  });
 
   useEffect(async () => {
     const eps = await getLocation();
@@ -30,14 +35,23 @@ function LocationsPage() {
       setLocations([...oldLocations, ...newLocations.data]);
     }
   };
+
+  const getFilteredLocations = () => locations;
+
+  console.log(filters);
+
   return locations ? (
     <main
       data-testid="locations-main"
       className="bg-gray-100 flex flex-col items-center tablet:items-start tablet:flex-row p-6 tablet:px-20 gap-16"
     >
-      <Filters />
+      <Filters
+        filterTypes={["name", "type", "dimension"]}
+        filters={filters}
+        setFilters={setFilters}
+      />
       <ItemList
-        items={locations}
+        items={getFilteredLocations()}
         totalDataCount={totalDataCount}
         fetchMoreData={fetchMoreData}
         hasMore={hasMore}

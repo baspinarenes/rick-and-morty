@@ -8,6 +8,10 @@ function EpisodesPage() {
   const [episodes, setEpisodes] = useState([]);
   const [totalDataCount, setTotalDataCount] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [filters, setFilters] = useState({
+    name: "",
+    episode: "",
+  });
 
   useEffect(async () => {
     const eps = await getEpisode();
@@ -30,14 +34,23 @@ function EpisodesPage() {
       setEpisodes([...oldEpisodes, ...newEpisodes.data]);
     }
   };
+
+  const getFilteredEpisodes = () => episodes;
+
+  console.log(filters);
+
   return episodes ? (
     <main
       data-testid="episodes-main"
       className="bg-gray-100 flex flex-col items-center tablet:items-start tablet:flex-row p-6 tablet:px-20 gap-16"
     >
-      <Filters />
+      <Filters
+        filterTypes={["name", "episode"]}
+        filters={filters}
+        setFilters={setFilters}
+      />
       <ItemList
-        items={episodes}
+        items={getFilteredEpisodes()}
         totalDataCount={totalDataCount}
         fetchMoreData={fetchMoreData}
         hasMore={hasMore}
