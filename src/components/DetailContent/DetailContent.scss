@@ -1,11 +1,24 @@
 #detail-content {
   #info-list {
+    align-items: center;
+
     span {
       line-height: 2.3rem;
+    }
+
+    li {
+      gap: 10px;
+    }
+
+    @media (min-width: 720px) {
+      li {
+        gap: 0;
+      }
     }
   
     @media (min-width: 1150px) {
       border: 0;
+      align-items: flex-start;
       
       li {
         flex-direction: column;
