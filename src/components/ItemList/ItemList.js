@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 
 function ItemList({ items, totalDataCount, fetchMoreData }) {
-  const pathName = window.location.pathname;
+  const pathName = window.location.pathname.replace(/\/([a-zA-Z-]+)\//, "");
 
   function getSummaryInfos(item) {
     const filteredInfos = Object.entries(item)

@@ -51,11 +51,11 @@ function LocationsPage() {
 
   if (locations?.length !== 0) {
     if (!totalDataCount || totalDataCount === 0) {
-      pageCaps = "/assets/empty-list-caps.png";
+      pageCaps = "./assets/empty-list-caps.png";
     } else if (totalDataCount < 108) {
-      pageCaps = "/assets/filtered-list-caps.png";
+      pageCaps = "./assets/filtered-list-caps.png";
     } else if (totalDataCount === 108) {
-      pageCaps = "/assets/full-list-caps.png";
+      pageCaps = "./assets/full-list-caps.png";
     } else {
       pageCaps = "";
     }
