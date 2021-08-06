@@ -1,6 +1,7 @@
 import React from "react";
 import "./DetailContent.scss";
 import EpisodeList from "../EpisodeList/EpisodeList";
+import CharacterList from "../CharacterList/CharacterList";
 
 function DetailContent({ item }) {
   const textInfos = Object.entries(item)
@@ -16,16 +17,21 @@ function DetailContent({ item }) {
       ([key, value]) =>
         ["episode", "residents", "characters"].includes(key) && value
     )
-    .filter((info) => !!info)[0];
-  console.log("ARRAYINFO: ", arrayInfo);
+    .filter((info) => !!info)
+    .slice(-1)[0]; // son öğeyi al
+
+  const pathName = window.location.pathname.replace(/\/(\w+)\/\w+/, "$1");
 
   return (
     !!arrayInfo && (
       <div id="detail-content" className="desktop:h-1/2 flex flex-col">
-        <ul id="info-list" className="capitalize flex flex-col border-b-2 py-4">
+        <ul
+          id="info-list"
+          className="capitalize flex flex-col border-b-2 py-4 w-3/12"
+        >
           {textInfos.map(([infoType, infoValue]) => (
-            <li className="flex">
-              <h4>{infoType}:</h4>
+            <li className="flex" key={infoType}>
+              <h4>{infoType.split("_")}:</h4>
               <span className="text-2xl font-bold">
                 {infoValue || "Unknown"}
               </span>
@@ -33,7 +39,11 @@ function DetailContent({ item }) {
           ))}
         </ul>
 
-        <EpisodeList arrayInfo={arrayInfo} />
+        {pathName === "character" ? (
+          <EpisodeList arrayInfo={arrayInfo} />
+        ) : (
+          <CharacterList arrayInfo={arrayInfo} />
+        )}
       </div>
     )
   );

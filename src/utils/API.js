@@ -55,6 +55,23 @@ export const getEndpoint = async (endpoint = "", filters = {}) => {
   }
 };
 
+export const getItems = async (apiLinks) => {
+  try {
+    const responses = await Promise.allSettled(
+      apiLinks.map((link) => axios(link))
+    );
+
+    const rawData = responses.map((response) => response.value.data);
+
+    return rawData;
+  } catch (e) {
+    return {
+      status: e.status,
+      error: e.message,
+    };
+  }
+};
+
 /*
 All filters: {
   Characters: name, status, species, type, gender
@@ -65,8 +82,10 @@ All filters: {
 export const getCharacter = (filters) => getEndpoint("character", filters);
 export const getLocation = (filters) => getEndpoint("location", filters);
 export const getEpisode = (filters) => getEndpoint("episode", filters);
+
 export const getAPI = {
   character: getCharacter,
   location: getLocation,
   episode: getEpisode,
+  items: getItems,
 };

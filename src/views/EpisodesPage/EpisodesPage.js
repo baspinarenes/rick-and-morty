@@ -25,6 +25,11 @@ function EpisodesPage() {
     const eps = await getAPI.episode();
     setEpisodes(eps.data);
     setTotalDataCount(eps.totalDataCount);
+
+    return () => {
+      setEpisodes([]);
+      setTotalDataCount(0);
+    };
   }, []);
 
   useEffect(() => {
@@ -48,12 +53,16 @@ function EpisodesPage() {
 
   let pageCaps = null;
 
-  if (totalDataCount < 41) {
-    pageCaps = "/assets/filtered-list-caps.png";
-  } else if (episodes?.length > 0) {
-    pageCaps = "/assets/full-list-caps.png";
-  } else {
-    pageCaps = "/assets/empty-list-caps.png";
+  if (episodes?.length !== 0) {
+    if (!totalDataCount || totalDataCount === 0) {
+      pageCaps = "/assets/empty-list-caps.png";
+    } else if (totalDataCount < 41) {
+      pageCaps = "/assets/filtered-list-caps.png";
+    } else if (totalDataCount === 41) {
+      pageCaps = "/assets/full-list-caps.png";
+    } else {
+      pageCaps = "";
+    }
   }
 
   return (

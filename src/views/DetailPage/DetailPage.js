@@ -4,22 +4,27 @@ import DetailContent from "../../components/DetailContent/DetailContent";
 import DetailHeader from "../../components/DetailHeader/DetailHeader";
 import { getAPI } from "../../utils/API";
 
-function DetailPage({ path }) {
+function DetailPage() {
   const { id } = useParams();
   const [item, setItem] = useState({});
+
+  const path = window.location.pathname.replace(/\/(\w+)\/\w+/, "$1");
 
   useEffect(async () => {
     const fetchedItem = await getAPI[path]({ id });
     setItem(fetchedItem.data);
   }, []);
+
   return (
-    <main id="detail-main" className="py-10">
-      <DetailHeader
-        image={item?.image || "/assets/placeholder-img.jpg"}
-        name={item.name}
-      />
-      <DetailContent item={item} />
-    </main>
+    !!item && (
+      <main id="detail-main" className="py-10">
+        <DetailHeader
+          image={item?.image || "/assets/placeholder.png"}
+          name={item.name}
+        />
+        <DetailContent item={item} />
+      </main>
+    )
   );
 }
 

@@ -51,12 +51,16 @@ function CharactersPage() {
 
   let pageCaps = null;
 
-  if (totalDataCount < 671) {
-    pageCaps = "/assets/filtered-list-caps.png";
-  } else if (characters?.length > 0) {
-    pageCaps = "/assets/full-list-caps.png";
-  } else {
-    pageCaps = "/assets/empty-list-caps.png";
+  if (characters?.length !== 0) {
+    if (!totalDataCount || totalDataCount === 0) {
+      pageCaps = "/assets/empty-list-caps.png";
+    } else if (totalDataCount < 671) {
+      pageCaps = "/assets/filtered-list-caps.png";
+    } else if (totalDataCount === 671) {
+      pageCaps = "/assets/full-list-caps.png";
+    } else {
+      pageCaps = "";
+    }
   }
 
   return (

@@ -49,12 +49,16 @@ function LocationsPage() {
 
   let pageCaps = null;
 
-  if (totalDataCount < 108) {
-    pageCaps = "/assets/filtered-list-caps.png";
-  } else if (locations?.length > 0) {
-    pageCaps = "/assets/full-list-caps.png";
-  } else {
-    pageCaps = "/assets/empty-list-caps.png";
+  if (locations?.length !== 0) {
+    if (!totalDataCount || totalDataCount === 0) {
+      pageCaps = "/assets/empty-list-caps.png";
+    } else if (totalDataCount < 108) {
+      pageCaps = "/assets/filtered-list-caps.png";
+    } else if (totalDataCount === 108) {
+      pageCaps = "/assets/full-list-caps.png";
+    } else {
+      pageCaps = "";
+    }
   }
 
   return (

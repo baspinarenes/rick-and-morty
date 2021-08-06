@@ -35,7 +35,7 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
       {!items ? null : (
         <div
           id="scrollableDiv"
-          className="den tablet:overflow-y-scroll tablet:pr-5 h-full"
+          className="custom-scrollbar tablet:overflow-y-scroll tablet:pr-5 h-full"
         >
           <InfiniteScroll
             dataLength={items.length}
@@ -45,14 +45,18 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
             scrollableTarget="scrollableDiv"
           >
             {items.map((item) => (
-              <Link to={`${pathName}/${item.id}`} className="card-link">
+              <Link
+                to={`${pathName}/${item.id}`}
+                className="card-link"
+                key={item.id}
+              >
                 <div
                   key={item.id}
                   className="card-container flex items-end border border-gray-300"
                 >
                   <img
                     className="card-bg"
-                    src={item.image || "/assets/placeholder-img.jpg"}
+                    src={item.image || "/assets/placeholder.png"}
                     alt=""
                   />
                   <div className="card-content w-full">

@@ -13,16 +13,23 @@
 
   h2 {
     text-align: center;
-    font-size: 6rem;
-    line-height: 2.3rem;
+    font-size: 3rem;
+    line-height: 2rem;
   }
+
   @media (min-width: 720px) {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 5px;
 
     img {
       width: 200px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 6rem;
+      line-height: 3rem;
     }
   }
 
@@ -37,7 +44,7 @@
     img {
       position: absolute;
       left: 50px;
-      top: 22%;
+      top: 15%;
       width: 500px;
       
     }

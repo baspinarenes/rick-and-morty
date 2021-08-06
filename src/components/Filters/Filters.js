@@ -8,6 +8,7 @@ const getFilterOfType = (type, handleChange) => {
         name="gender"
         className="w-full mb-2 py-2 px-5"
         onChange={handleChange}
+        key={type}
       >
         <option value="" defaultValue disabled>
           Gender
@@ -26,6 +27,7 @@ const getFilterOfType = (type, handleChange) => {
         name="status"
         className="w-full mb-2 py-2 px-5"
         onChange={handleChange}
+        key={type}
       >
         <option value="" defaultValue disabled>
           Status
@@ -46,6 +48,7 @@ const getFilterOfType = (type, handleChange) => {
       placeholder={type[0].toUpperCase() + type.slice(1)}
       autoComplete="off"
       onChange={handleChange}
+      key={type}
     />
   );
 };

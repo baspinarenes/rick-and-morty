@@ -1,6 +1,8 @@
 #detail-content {
   #info-list {
     align-items: center;
+    min-width: 200px;
+    width: fit-content;
 
     span {
       line-height: 2.3rem;
@@ -12,7 +14,7 @@
 
     @media (min-width: 720px) {
       li {
-        gap: 0;
+        gap: 7px;
       }
     }
   
@@ -31,5 +33,18 @@
     flex-direction: row;
     padding-left: 620px;
     padding-right: 20px;
+  }
+}
+
+.episode-link {
+  &:hover {
+    color:gray;
+  }
+}
+
+.character-link {
+  opacity:0.8;
+  &:hover {
+    opacity: 1;
   }
 }
