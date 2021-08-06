@@ -19,7 +19,7 @@ function DetailPage() {
 
   return (
     !!item && (
-      <main id="detail-main" className="py-10">
+      <main id="detail-main" className="py-10 desktop:py-0">
         <DetailHeader
           image={item?.image || "../assets/placeholder.png"}
           name={item.name}
