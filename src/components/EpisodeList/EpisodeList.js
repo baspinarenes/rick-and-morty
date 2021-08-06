@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAPI } from "../../utils/API";
+import getAPI from "../../utils/API";
 
 function EpisodeList({ arrayInfo }) {
   const [episodes, setEpisodes] = useState([]);
+
   useEffect(async () => {
     const lastFiveEpisodeLinks = arrayInfo[1]
       .sort((a, b) => a - b)
       .reverse()
       .slice(0, 5);
-
     const lastFiveEpisode = await getAPI.items(lastFiveEpisodeLinks);
 
     setEpisodes(lastFiveEpisode);

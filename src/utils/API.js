@@ -83,7 +83,7 @@ export const getCharacter = (filters) => getEndpoint("character", filters);
 export const getLocation = (filters) => getEndpoint("location", filters);
 export const getEpisode = (filters) => getEndpoint("episode", filters);
 
-export const getAPI = {
+export default {
   character: getCharacter,
   location: getLocation,
   episode: getEpisode,

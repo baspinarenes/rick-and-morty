@@ -18,7 +18,7 @@ function Header() {
       >
         <img
           className="max-h-20 mx-auto tablet:mx-0"
-          src="/assets/rick-and-morty-logo.png"
+          src="./assets/rick-and-morty-logo.png"
           alt=""
           height="78"
         />

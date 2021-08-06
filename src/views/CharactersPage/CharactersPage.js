@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "../../components/Filters/Filters";
 import ItemList from "../../components/ItemList/ItemList";
 import "./CharactersPage.scss";
-import { getAPI } from "../../utils/API";
+import getAPI from "../../utils/API";
 
 function CharactersPage() {
   const [characters, setCharacters] = useState([]);
@@ -53,11 +53,11 @@ function CharactersPage() {
 
   if (characters?.length !== 0) {
     if (!totalDataCount || totalDataCount === 0) {
-      pageCaps = "/assets/empty-list-caps.png";
+      pageCaps = "./assets/empty-list-caps.png";
     } else if (totalDataCount < 671) {
-      pageCaps = "/assets/filtered-list-caps.png";
+      pageCaps = "./assets/filtered-list-caps.png";
     } else if (totalDataCount === 671) {
-      pageCaps = "/assets/full-list-caps.png";
+      pageCaps = "./assets/full-list-caps.png";
     } else {
       pageCaps = "";
     }

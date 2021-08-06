@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "../../components/Filters/Filters";
 import ItemList from "../../components/ItemList/ItemList";
 import "./LocationsPage.scss";
-import { getAPI } from "../../utils/API";
+import getAPI from "../../utils/API";
 
 function LocationsPage() {
   const [locations, setLocations] = useState([]);

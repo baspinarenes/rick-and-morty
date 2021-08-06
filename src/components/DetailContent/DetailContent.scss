@@ -2,7 +2,7 @@
   #info-list {
     align-items: center;
     min-width: 200px;
-    width: fit-content;
+    width: 100%;
 
     span {
       line-height: 2.3rem;
@@ -21,6 +21,8 @@
     @media (min-width: 1150px) {
       border: 0;
       align-items: flex-start;
+      width: fit-content;
+      min-height: 50%;
       
       li {
         flex-direction: column;

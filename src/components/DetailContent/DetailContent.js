@@ -20,15 +20,12 @@ function DetailContent({ item }) {
     .filter((info) => !!info)
     .slice(-1)[0]; // son öğeyi al
 
-  const pathName = window.location.pathname.replace(/\/(\w+)\/\w+/, "$1");
+  const path = /\/[a-zA-Z-]+\/(\w+)\/*.*/.exec(window.location.pathname)[1];
 
   return (
     !!arrayInfo && (
-      <div id="detail-content" className="desktop:h-1/2 flex flex-col">
-        <ul
-          id="info-list"
-          className="capitalize flex flex-col border-b-2 py-4 w-3/12"
-        >
+      <div id="detail-content" className="flex flex-col">
+        <ul id="info-list" className="capitalize flex flex-col border-b-2 py-4">
           {textInfos.map(([infoType, infoValue]) => (
             <li className="flex" key={infoType}>
               <h4>{infoType.split("_")}:</h4>
@@ -39,7 +36,7 @@ function DetailContent({ item }) {
           ))}
         </ul>
 
-        {pathName === "character" ? (
+        {path === "character" ? (
           <EpisodeList arrayInfo={arrayInfo} />
         ) : (
           <CharacterList arrayInfo={arrayInfo} />

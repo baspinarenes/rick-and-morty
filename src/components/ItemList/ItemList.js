@@ -4,20 +4,20 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 
 function ItemList({ items, totalDataCount, fetchMoreData }) {
-  const pathName = window.location.pathname.replace(/\/([a-zA-Z-]+)\//, "");
+  const path = /\/[a-zA-Z-]+\/(\w+)\/*.*/.exec(window.location.pathname)[1];
 
   function getSummaryInfos(item) {
     const filteredInfos = Object.entries(item)
       .map(
         ([key, value]) =>
           (!["name", "image", "url", "created", "type"].includes(key) ||
-            (pathName === "/location" && key === "type")) &&
+            (path === "location" && key === "type")) &&
           typeof value === "string" && [key, value]
       )
       .filter((info) => info[1] !== "" && info[1] !== "unknown")
       .filter((info) => info);
 
-    return pathName === "/episode" ? filteredInfos.reverse() : filteredInfos;
+    return path === "episode" ? filteredInfos.reverse() : filteredInfos;
   }
 
   return (
@@ -26,7 +26,7 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
       className="h-full w-11/12  tablet:overflow-hidden tablet:flex-1 tablet:flex tablet:flex-col"
     >
       <div className="laptop:flex laptop:justify-between laptop:items-end">
-        <h2 className="text-">List of {pathName.slice(1)}s</h2>
+        <h2 className="text-">List of {path}s</h2>
         <p className="mb-5 text-gray-500">
           {items?.length || 0} of {totalDataCount || 0} items listed.
         </p>
@@ -46,7 +46,7 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
           >
             {items.map((item) => (
               <Link
-                to={`${pathName}/${item.id}`}
+                to={`${path}/${item.id}`}
                 className="card-link"
                 key={item.id}
               >
@@ -56,7 +56,7 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
                 >
                   <img
                     className="card-bg"
-                    src={item.image || "/assets/placeholder.png"}
+                    src={item.image || "./assets/placeholder.png"}
                     alt=""
                   />
                   <div className="card-content w-full">
