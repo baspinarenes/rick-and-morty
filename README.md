@@ -1,6 +1,8 @@
 # React Rick and Morty App
 
-This project was created with **create-react-app**.
+The purpose of this project is to list, filter and show details of **Rick and Morty** by pulling them from API. It is a **React** project and built with **create-react-app**. While coding, **ESLint** and **Prettier** were used together with the **AirBnb** style guide.
+
+
 
 ## Using Packages
 
@@ -8,6 +10,7 @@ This project was created with **create-react-app**.
 - react-router-dom
 - sass
 - testing-library
+- react-infinite-scroll-component
 - eslint + prettier + airbnb
 
 ## Installation
