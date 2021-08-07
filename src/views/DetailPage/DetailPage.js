@@ -17,13 +17,22 @@ function DetailPage() {
     setItem(fetchedItem.data);
   }, []);
 
+  let image = "";
+
+  if (Object.keys(item).length !== 0) {
+    if (item.image) {
+      image = item.image;
+    } else {
+      image = "../assets/placeholder.png";
+    }
+  }
+
+  console.log("IMAGE: ", image);
+
   return (
     !!item && (
       <main id="detail-main" className="py-10 desktop:py-0">
-        <DetailHeader
-          image={item?.image || "../assets/placeholder.png"}
-          name={item.name}
-        />
+        <DetailHeader image={image} name={item.name} />
         <DetailContent item={item} />
       </main>
     )

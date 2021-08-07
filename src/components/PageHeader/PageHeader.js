@@ -20,6 +20,7 @@ function Header() {
           className="max-h-20 mx-auto tablet:mx-0"
           src="./assets/rick-and-morty-logo.png"
           alt=""
+          width="350.7"
           height="78"
         />
       </Link>

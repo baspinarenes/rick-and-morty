@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseUrl = "https://rickandmortyapi.com/api/";
 
-const getFiltersQuery = (filters) => {
+export const getFiltersQuery = (filters) => {
   if (Object.keys(filters) <= 0) {
     return "";
   }
@@ -18,11 +18,20 @@ const getFiltersQuery = (filters) => {
   return `/?${filterTexts.join("&")}`;
 };
 
-const getData = async (endpointUrl) => {
+export const getData = async (endpointUrl) => {
   const url = `${baseUrl}${endpointUrl}`;
-  const response = await axios.get(url);
+  let response;
 
-  const { info, data } = response;
+  try {
+    response = await axios.get(url);
+
+    if ("error" in response.data) {
+      throw new Error(response.data.error);
+    }
+  } catch (err) {
+    return err.message;
+  }
+
   /* 
     Raw data;
     - /character -> data.results (array)
@@ -31,45 +40,35 @@ const getData = async (endpointUrl) => {
     - /character/?name="Rick" -> data.results (array)
   */
 
-  if (Array.isArray(data) || data?.id) {
-    return { data, totalDataCount: info?.count };
+  const { data } = response;
+
+  if ("results" in data) {
+    return {
+      totalDataCount: data.info?.count,
+      data: data.results,
+    };
   }
 
-  return {
-    data: data.results,
-    totalDataCount: data.info?.count,
-  };
+  return { data };
 };
 
 export const getEndpoint = async (endpoint = "", filters = {}) => {
-  try {
-    const filtersQuery = getFiltersQuery(filters);
-    const rawData = await getData(endpoint + filtersQuery);
+  const filtersQuery = getFiltersQuery(filters);
+  const data = await getData(endpoint + filtersQuery);
 
-    return rawData;
-  } catch (e) {
-    return {
-      status: e.status,
-      error: e.message,
-    };
-  }
+  return data;
 };
 
 export const getItems = async (apiLinks) => {
-  try {
-    const responses = await Promise.allSettled(
-      apiLinks.map((link) => axios(link))
-    );
+  const responses = await Promise.allSettled(
+    apiLinks.map((link) =>
+      getData(link.replace("https://rickandmortyapi.com/api/", ""))
+    )
+  );
 
-    const rawData = responses.map((response) => response.value.data);
+  const data = responses.map((response) => response.value.data);
 
-    return rawData;
-  } catch (e) {
-    return {
-      status: e.status,
-      error: e.message,
-    };
-  }
+  return data;
 };
 
 /*

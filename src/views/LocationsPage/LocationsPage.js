@@ -36,10 +36,17 @@ function LocationsPage() {
   const fetchMoreData = async () => {
     if (locations.length < totalDataCount) {
       const oldLocations = [...locations];
-      const newLocations = await getAPI.location({
-        ...filters,
-        page: Math.floor(oldLocations.length / 20) + 1,
-      });
+
+      let newLocations;
+      try {
+        newLocations = await getAPI.location({
+          ...filters,
+          page: Math.floor(oldLocations.length / 20) + 1,
+        });
+      } catch (err) {
+        console.log("error");
+        return;
+      }
 
       if ("data" in newLocations) {
         setLocations([...oldLocations, ...newLocations.data]);
