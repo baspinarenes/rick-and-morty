@@ -4,16 +4,18 @@ import DetailContent from "../../components/DetailContent/DetailContent";
 import DetailHeader from "../../components/DetailHeader/DetailHeader";
 import getAPI from "../../utils/API";
 
-function DetailPage() {
+function DetailPage({ pathName }) {
   const { id } = useParams();
   const [item, setItem] = useState({});
 
-  const path = /\/[a-zA-Z-]+\/(\w+)\/*.*/.exec(window.location.pathname)[1];
+  const path =
+    pathName || /\/[a-zA-Z-]+\/(\w+)\/*.*/.exec(window.location.pathname)[1];
 
   useEffect(async () => {
     const fetchedItem = await getAPI[path]({
       id,
     });
+
     setItem(fetchedItem.data);
   }, []);
 
@@ -27,13 +29,11 @@ function DetailPage() {
     }
   }
 
-  console.log("IMAGE: ", image);
-
   return (
     !!item && (
       <main id="detail-main" className="py-10 desktop:py-0">
         <DetailHeader image={image} name={item.name} />
-        <DetailContent item={item} />
+        <DetailContent item={item} pathName={pathName} />
       </main>
     )
   );

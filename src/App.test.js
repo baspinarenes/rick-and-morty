@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { act, render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
 function NavLinkClickExcept(testId, content) {

@@ -84,6 +84,7 @@ function CharactersPage() {
         items={characters}
         totalDataCount={totalDataCount}
         fetchMoreData={fetchMoreData}
+        pathName="character"
       />
     </main>
   );

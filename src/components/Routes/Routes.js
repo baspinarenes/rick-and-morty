@@ -18,21 +18,31 @@ function Routes() {
       <Route
         exact
         path="/character/:id"
-        render={(props) => <DetailPage key={props.location.key} {...props} />}
+        render={(props) => (
+          <DetailPage
+            key={props.location.key}
+            pathName="character"
+            {...props}
+          />
+        )}
       />
       <Route exact path="/character" component={CharactersPage} />
 
       <Route
         exact
         path="/location/:id"
-        render={(props) => <DetailPage key={props.location.key} {...props} />}
+        render={(props) => (
+          <DetailPage key={props.location.key} pathName="location" {...props} />
+        )}
       />
       <Route exact path="/location" component={LocationsPage} />
 
       <Route
         exact
         path="/episode/:id"
-        render={(props) => <DetailPage key={props.location.key} {...props} />}
+        render={(props) => (
+          <DetailPage key={props.location.key} pathName="episode" {...props} />
+        )}
       />
       <Route exact path="/episode" component={EpisodesPage} />
 

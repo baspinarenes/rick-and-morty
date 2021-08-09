@@ -35,15 +35,21 @@
 
   @media (min-width: 1150px) {
     flex-direction: row;
-    padding-left: 620px;
+    padding-left: 680px;
     padding-right: 20px;
     min-height: 50%;
   }
 }
 
-.episode-link {
+.episode-link span {
+  font-size: 1.2rem;
+
   &:hover {
     color:gray;
+  }
+
+  @media (min-width: 720px) {
+    font-size: 1.5rem;
   }
 }
 

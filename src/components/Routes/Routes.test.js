@@ -9,24 +9,20 @@ import CharactersPage from "../../views/CharactersPage/CharactersPage";
 import EpisodesPage from "../../views/EpisodesPage/EpisodesPage";
 import LocationsPage from "../../views/LocationsPage/LocationsPage";
 import NotFoundPage from "../../views/NotFoundPage/NotFoundPage";
+import DetailPage from "../../views/DetailPage/DetailPage";
 
-/* 
-  Note: Unit tests for routing should be independent of component content. 
-  That's why we're doing the mocking. 
-*/
 jest.mock("../PageHeader/PageHeader");
 jest.mock("../../views/CharactersPage/CharactersPage");
 jest.mock("../../views/EpisodesPage/EpisodesPage");
 jest.mock("../../views/LocationsPage/LocationsPage");
 jest.mock("../../views/NotFoundPage/NotFoundPage");
+jest.mock("../../views/DetailPage/DetailPage");
 
 describe("Tests for App Router", () => {
-  test("Should render PageHeader and CharactersPage when route is '/'", () => {
-    // Arange
+  it("should render PageHeader and CharactersPage when route is '/'", () => {
     PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
     CharactersPage.mockImplementation(() => <div>Fake CharactersPage</div>);
 
-    // Act
     render(
       <MemoryRouter>
         <PageHeader />
@@ -34,17 +30,14 @@ describe("Tests for App Router", () => {
       </MemoryRouter>
     );
 
-    // Assert
     expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
     expect(screen.getByText("Fake CharactersPage")).toBeInTheDocument();
   });
 
-  test("Should render PageHeader and CharactersPage when route is '/character'", () => {
-    // Arange
+  it("should render PageHeader and CharactersPage when route is '/character'", () => {
     PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
     CharactersPage.mockImplementation(() => <div>Fake CharactersPage</div>);
 
-    // Act
     render(
       <MemoryRouter initialEntries={["/character"]}>
         <PageHeader />
@@ -52,17 +45,29 @@ describe("Tests for App Router", () => {
       </MemoryRouter>
     );
 
-    // Assert
     expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
     expect(screen.getByText("Fake CharactersPage")).toBeInTheDocument();
   });
 
-  test("Should render PageHeader and LocationsPage when route is '/location'", () => {
-    // Arange
+  it("should render PageHeader and DetailPage when route is '/character/:id'", () => {
+    PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
+    DetailPage.mockImplementation(() => <div>Fake DetailPage</div>);
+
+    render(
+      <MemoryRouter initialEntries={["/character/5"]}>
+        <PageHeader />
+        <Routes />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
+    expect(screen.getByText("Fake DetailPage")).toBeInTheDocument();
+  });
+
+  it("should render PageHeader and LocationsPage when route is '/location'", () => {
     PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
     LocationsPage.mockImplementation(() => <div>Fake LocationsPage</div>);
 
-    // Act
     render(
       <MemoryRouter initialEntries={["/location"]}>
         <PageHeader />
@@ -70,17 +75,29 @@ describe("Tests for App Router", () => {
       </MemoryRouter>
     );
 
-    // Assert
     expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
     expect(screen.getByText("Fake LocationsPage")).toBeInTheDocument();
   });
 
-  test("Should render PageHeader and EpisodesPage when route is '/episode'", () => {
-    // Arange
+  it("should render PageHeader and DetailPage when route is '/location/:id'", () => {
+    PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
+    DetailPage.mockImplementation(() => <div>Fake DetailPage</div>);
+
+    render(
+      <MemoryRouter initialEntries={["/location/5"]}>
+        <PageHeader />
+        <Routes />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
+    expect(screen.getByText("Fake DetailPage")).toBeInTheDocument();
+  });
+
+  it("should render PageHeader and EpisodesPage when route is '/episode'", () => {
     PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
     EpisodesPage.mockImplementation(() => <div>Fake EpisodesPage</div>);
 
-    // Act
     render(
       <MemoryRouter initialEntries={["/episode"]}>
         <PageHeader />
@@ -88,17 +105,29 @@ describe("Tests for App Router", () => {
       </MemoryRouter>
     );
 
-    // Assert
     expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
     expect(screen.getByText("Fake EpisodesPage")).toBeInTheDocument();
   });
 
-  test("Should render PageHeader and NotFoundPage when route is invalid", () => {
-    // Arange
+  it("should render PageHeader and DetailPage when route is '/episode/:id'", () => {
+    PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
+    DetailPage.mockImplementation(() => <div>Fake DetailPage</div>);
+
+    render(
+      <MemoryRouter initialEntries={["/episode/5"]}>
+        <PageHeader />
+        <Routes />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
+    expect(screen.getByText("Fake DetailPage")).toBeInTheDocument();
+  });
+
+  it("should render PageHeader and NotFoundPage when route is invalid", () => {
     PageHeader.mockImplementation(() => <div>Fake PageHeader</div>);
     NotFoundPage.mockImplementation(() => <div>Fake NotFoundPage</div>);
 
-    // Act
     render(
       <MemoryRouter initialEntries={["/invalid-route"]}>
         <PageHeader />
@@ -106,7 +135,6 @@ describe("Tests for App Router", () => {
       </MemoryRouter>
     );
 
-    // Assert
     expect(screen.getByText("Fake PageHeader")).toBeInTheDocument();
     expect(screen.getByText("Fake NotFoundPage")).toBeInTheDocument();
   });

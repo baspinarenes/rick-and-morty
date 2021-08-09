@@ -70,3 +70,11 @@
     }
   }
 }
+
+
+#scrollableDiv {
+  @media (max-width: 720px) {
+    height: 440px;
+    padding-right: 10px;
+  }
+}

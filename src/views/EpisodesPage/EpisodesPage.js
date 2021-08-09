@@ -86,6 +86,7 @@ function EpisodesPage() {
         items={episodes}
         totalDataCount={totalDataCount}
         fetchMoreData={fetchMoreData}
+        pathName="episode"
       />
     </main>
   );

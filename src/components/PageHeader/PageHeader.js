@@ -14,11 +14,11 @@ function Header() {
       <Link
         to="/"
         data-testid="navigate-to-home"
-        className="block w-full border-b-2 tablet:border-b-0 tablet:mx-0"
+        className="w-full border-b-2 tablet:border-b-0 tablet:mx-0"
       >
         <img
           className="max-h-20 mx-auto tablet:mx-0"
-          src="./assets/rick-and-morty-logo.png"
+          src={`${process.env.PUBLIC_URL}/assets/rick-and-morty-logo.png`}
           alt=""
           width="350.7"
           height="78"

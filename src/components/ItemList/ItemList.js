@@ -3,21 +3,19 @@ import "./ItemList.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 
-function ItemList({ items, totalDataCount, fetchMoreData }) {
-  const path = /\/[a-zA-Z-]+\/(\w+)\/*.*/.exec(window.location.pathname)[1];
-
+function ItemList({ items, totalDataCount, fetchMoreData, pathName }) {
   function getSummaryInfos(item) {
     const filteredInfos = Object.entries(item)
       .map(
         ([key, value]) =>
           (!["name", "image", "url", "created", "type"].includes(key) ||
-            (path === "location" && key === "type")) &&
+            (pathName === "location" && key === "type")) &&
           typeof value === "string" && [key, value]
       )
       .filter((info) => info[1] !== "" && info[1] !== "unknown")
       .filter((info) => info);
 
-    return path === "episode" ? filteredInfos.reverse() : filteredInfos;
+    return pathName === "episode" ? filteredInfos.reverse() : filteredInfos;
   }
 
   return (
@@ -26,7 +24,7 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
       className="h-full w-11/12  tablet:overflow-hidden tablet:flex-1 tablet:flex tablet:flex-col"
     >
       <div className="laptop:flex laptop:justify-between laptop:items-end">
-        <h2 className="text-">List of {path}s</h2>
+        <h2>List of {pathName}s</h2>
         <p className="mb-5 text-gray-500">
           {items?.length || 0} of {totalDataCount || 0} items listed.
         </p>
@@ -35,7 +33,7 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
       {!items ? null : (
         <div
           id="scrollableDiv"
-          className="custom-scrollbar tablet:overflow-y-scroll tablet:pr-5 h-full"
+          className="custom-scrollbar overflow-y-scroll tablet:pr-5 h-full"
         >
           <InfiniteScroll
             dataLength={items.length}
@@ -46,7 +44,7 @@ function ItemList({ items, totalDataCount, fetchMoreData }) {
           >
             {items.map((item) => (
               <Link
-                to={`${path}/${item.id}`}
+                to={`${pathName}/${item.id}`}
                 className="card-link"
                 key={item.id}
               >

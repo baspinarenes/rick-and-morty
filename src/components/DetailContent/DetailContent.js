@@ -3,7 +3,7 @@ import "./DetailContent.scss";
 import EpisodeList from "../EpisodeList/EpisodeList";
 import CharacterList from "../CharacterList/CharacterList";
 
-function DetailContent({ item }) {
+function DetailContent({ item, pathName }) {
   const textInfos = Object.entries(item)
     .map(
       ([key, value]) =>
@@ -20,7 +20,7 @@ function DetailContent({ item }) {
     .filter((info) => !!info)
     .slice(-1)[0]; // son öğeyi al
 
-  const path = /\/[a-zA-Z-]+\/(\w+)\/*.*/.exec(window.location.pathname)[1];
+  const path = pathName;
 
   return (
     !!arrayInfo && (

@@ -44,7 +44,6 @@ function LocationsPage() {
           page: Math.floor(oldLocations.length / 20) + 1,
         });
       } catch (err) {
-        console.log("error");
         return;
       }
 
@@ -89,6 +88,7 @@ function LocationsPage() {
         items={locations}
         totalDataCount={totalDataCount}
         fetchMoreData={fetchMoreData}
+        pathName="location"
       />
     </main>
   );

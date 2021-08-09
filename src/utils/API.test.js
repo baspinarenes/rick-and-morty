@@ -249,14 +249,14 @@ describe("Tests for API", () => {
     it("should return endpoint list when endpoint is wrong", async () => {
       const fakeData = {
         data: {
-          error: "There is nothing here.",
+          error: "There is nothing here",
         },
       };
 
       axios.get.mockResolvedValue(fakeData);
 
       const fetchedData = await getEndpoint("characterss");
-      expect(fetchedData.data.error).toBe("There is nothing here.");
+      expect(fetchedData).toBe("There is nothing here");
     });
   });
 
@@ -371,7 +371,7 @@ describe("Tests for API", () => {
         name: "Invalid",
       });
 
-      expect(fetchedData.data.error).toEqual("There is nothing here");
+      expect(fetchedData).toBe("There is nothing here");
     });
   });
 
@@ -459,7 +459,7 @@ describe("Tests for API", () => {
         name: "Invalid",
       });
 
-      expect(fetchedData.data.error).toEqual("There is nothing here");
+      expect(fetchedData).toBe("There is nothing here");
     });
   });
 
@@ -541,7 +541,7 @@ describe("Tests for API", () => {
         name: "Invalid",
       });
 
-      expect(fetchedData.data.error).toEqual("There is nothing here");
+      expect(fetchedData).toBe("There is nothing here");
     });
   });
 
@@ -568,8 +568,6 @@ describe("Tests for API", () => {
         "https://rickandmortyapi.com/api/episode/21",
         "https://rickandmortyapi.com/api/episode/21",
       ]);
-
-      console.log("DATA: ", fetchedData);
 
       expect(fetchedData.length).toBe(2);
     });
